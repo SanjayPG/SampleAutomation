@@ -35,7 +35,7 @@ public class BrowserTest {
 
         try {
             driver.get("https://www.google.com/");
-           WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT_SECONDS));
+          WebDriverWait wait = new WebDriverWait(driver, TIMEOUT_SECONDS);
 
             // Handle Google's consent dialog with more specific selectors
             handleConsentDialog(wait);
