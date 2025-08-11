@@ -5,9 +5,14 @@ pool:
   name: SeleniumPool
 
 steps:
-- task: Maven@3
+- task: Maven@4
   inputs:
     mavenPomFile: 'pom.xml'
     goals: 'test'
     publishJUnitResults: true
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
     testResultsFiles: '**/TEST-*.xml'
+    failTaskOnFailedTests: true
