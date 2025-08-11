@@ -3,19 +3,32 @@ package Academy;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class BrowserTest {
+public class GoogleSearchTest {
 
     @Test
-    public void getData() {
+    public void testGoogleSearch() {
+        WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         try {
-            driver.get("https://learnautomation.azurewebsites.net/webapp/");
-            String text = driver.findElement(By.cssSelector("h1")).getText();
-            System.out.println(text);
-            Assert.assertTrue(text.equalsIgnoreCase("my devops Learing"));
+            driver.get("https://www.google.com/");
+            WebElement searchBox = driver.findElement(By.name("q"));
+            searchBox.sendKeys("Selenium");
+            searchBox.sendKeys(Keys.RETURN); // Press Enter
+
+            // Wait for results page to load (simple sleep for demo; use WebDriverWait in real tests)
+            Thread.sleep(2000);
+
+            String title = driver.getTitle();
+            System.out.println("Page title is: " + title);
+            Assert.assertTrue("Title should contain 'Selenium'", title.contains("Selenium"));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         } finally {
             driver.quit();
         }
