@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-  name: SeleniumPool
+  vmImage: 'ubuntu-latest'
 
 steps:
 - task: Maven@4
