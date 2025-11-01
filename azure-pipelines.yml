@@ -8,11 +8,20 @@ steps:
 - task: Maven@4
   inputs:
     mavenPomFile: 'pom.xml'
-    goals: 'test'
+    # run tests and then generate the surefire HTML report
+    goals: 'test surefire-report:report'
     publishJUnitResults: true
 
-- task: PublishTestResults@2
+# Publish the raw JUnit XML files (target/surefire-reports)
+- task: PublishPipelineArtifact@1
   inputs:
-    testResultsFormat: 'JUnit'
-    testResultsFiles: '**/TEST-*.xml'
-    failTaskOnFailedTests: true
+    targetPath: 'target/surefire-reports'
+    artifact: 'junit-xml'
+    publishLocation: 'pipeline'
+
+# Publish the generated surefire HTML report (target/site)
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: 'target/site'
+    artifact: 'surefire-html'
+    publishLocation: 'pipeline'
