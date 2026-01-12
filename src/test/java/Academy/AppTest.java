@@ -3,6 +3,8 @@ package Academy;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Unit test for simple App.
@@ -10,6 +12,8 @@ import junit.framework.TestSuite;
 public class AppTest 
     extends TestCase
 {
+    private static final Logger logger = LoggerFactory.getLogger(AppTest.class);
+
     /**
      * Create the test case
      *
@@ -33,6 +37,8 @@ public class AppTest
      */
     public void testApp()
     {
+        logger.info("Starting testApp");
         assertTrue( true );
+        logger.info("Finished testApp");
     }
 }
