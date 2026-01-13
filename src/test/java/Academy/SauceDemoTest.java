@@ -130,8 +130,18 @@ public class SauceDemoTest {
                     "Should be on inventory page after successful login");
             logger.info("[{}] Test PASSED: Login successful - URL: {}", testMethodName, currentUrl);
         } catch (Exception e) {
-            logger.error("[{}] Test FAILED: Exception occurred during positive login test", testMethodName, e);
-            Assert.fail("Login test failed with exception: " + e.getMessage());
+            logger.error("[{}] Login failed: Exception occurred during login, check the user id or password", testMethodName, e);
+
+            // Try to capture error message from the application
+            try {
+                WebElement errorElement = driver.findElement(By.cssSelector("[data-test='error']"));
+                String errorMessage = errorElement.getText();
+                logger.error("[{}] Application Error Message: {}", testMethodName, errorMessage);
+                Assert.fail("Login test failed - Application Error: " + errorMessage + " | Exception: " + e.getMessage());
+            } catch (Exception errorCaptureException) {
+                logger.warn("[{}] Could not capture error message from application", testMethodName);
+                Assert.fail("Login test failed with exception: " + e.getMessage());
+            }
         }
     }
 
