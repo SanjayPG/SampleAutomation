@@ -1,0 +1,53 @@
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# IDE - IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# IDE - Eclipse
+.classpath
+.project
+.settings/
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.recommenders
+
+# IDE - VSCode
+.vscode/
+
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# Test outputs
+test-output/
+target/test-logs/
+*.png
+
+# Temporary files
+tmpclaude-*
+mvn_output.txt
+
+# OS files
+.DS_Store
+Thumbs.db
